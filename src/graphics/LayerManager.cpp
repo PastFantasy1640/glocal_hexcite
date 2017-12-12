@@ -1,8 +1,8 @@
 #include "LayerManager.hpp"
 #include <SFML/Window/Sensor.hpp>
-#include "Systems/Logger.hpp"
+#include "system/Logger.hpp"
 #include <utility>
-jubeon::LayerManager::LayerManager(const sf::Vector2u & window_size, const sf::Vector2u & layer_size, const std::string & window_title, const LayoutType & layout_type, const sf::Uint32 & window_style)
+gh::LayerManager::LayerManager(const sf::Vector2u & window_size, const sf::Vector2u & layer_size, const std::string & window_title, const LayoutType & layout_type, const sf::Uint32 & window_style)
 	: layout_type_(layout_type),
 		window_size_(window_size),
 		layer_size_(layer_size),
@@ -16,13 +16,13 @@ jubeon::LayerManager::LayerManager(const sf::Vector2u & window_size, const sf::V
 #include <thread>
 #include <chrono>
 */
-bool jubeon::LayerManager::createWindow(){
+bool gh::LayerManager::createWindow(){
 	//has been initialized?
 	if (this->is_initialized_) return true;
 
 	//initialize this window
 	if (!this->window_buffer_.create(this->layer_size_.x, this->layer_size_.y)) {
-		jubeon::Logger("LayerManager").error("Failed to create the window render buffer.");
+		gh::Logger("LayerManager").error("Failed to create the window render buffer.");
 		return false;
 	}
 	this->window_buffer_.clear();
@@ -65,7 +65,7 @@ bool jubeon::LayerManager::createWindow(){
 	return true;
 }
 
-void jubeon::LayerManager::addLayer(const std::shared_ptr<jubeon::LayerBase> & layer, const unsigned char layernumber){
+void gh::LayerManager::addLayer(const std::shared_ptr<gh::LayerBase> & layer, const unsigned char layernumber){
 
 	unsigned char i = 0;
 	std::list <std::shared_ptr<LayerBase>>::const_iterator p;
@@ -80,22 +80,22 @@ void jubeon::LayerManager::addLayer(const std::shared_ptr<jubeon::LayerBase> & l
 
 	//insert
 	if (!layer->createLayerBuffer()) {
-		jubeon::Logger("LayerManager").error("Failed to create the layer buffer.\nThis layer was not added the layers list.");
+		gh::Logger("LayerManager").error("Failed to create the layer buffer.\nThis layer was not added the layers list.");
 		return;
 	}
 	this->layer_list_.insert(p, layer);
 }
 
-void jubeon::LayerManager::closeWindow(void){
+void gh::LayerManager::closeWindow(void){
 	this->close();
 }
 
-void jubeon::LayerManager::closeAllLayers(void) {
+void gh::LayerManager::closeAllLayers(void) {
 	for (auto p = this->layer_list_.begin(); p != this->layer_list_.end(); ++p) (*p)->setExitCode(1);
 	this->is_continue_eventloop_ = false;
 }
 
-void jubeon::LayerManager::drawAllLayers(void) {
+void gh::LayerManager::drawAllLayers(void) {
 	//clear window buffer
 	this->window_buffer_.clear();
 	
@@ -118,7 +118,7 @@ void jubeon::LayerManager::drawAllLayers(void) {
 	this->display();    
 }
 
-void jubeon::LayerManager::eventLoop(void)
+void gh::LayerManager::eventLoop(void)
 {
 	if (!this->createWindow()) {
 		Logger("LayerManager").error("Failed create Layer. Event loop was skipped.");
@@ -135,10 +135,10 @@ void jubeon::LayerManager::eventLoop(void)
 		std::this_thread::sleep_for(std::chrono::microseconds(1));
 	}
 
-	jubeon::Logger("LayerManager").information("Closed event has been received.");
+	gh::Logger("LayerManager").information("Closed event has been received.");
 }
 
-void jubeon::LayerManager::setCallback(Callback function)
+void gh::LayerManager::setCallback(Callback function)
 {
 	std::lock_guard<std::mutex> lock(this->mutex_);
 	this->event_cb = function;

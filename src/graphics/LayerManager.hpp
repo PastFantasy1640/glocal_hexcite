@@ -6,8 +6,8 @@
 
 #pragma once
 
-#ifndef JUBEON_LAYERMANAGER_HPP_
-#define JUBEON_LAYERMANAGER_HPP_
+#ifndef GH_LAYERMANAGER_HPP_
+#define GH_LAYERMANAGER_HPP_
 
 #include <functional>
 #include <string>
@@ -18,7 +18,7 @@
 #include <SFML/Graphics.hpp>
 #include "LayerBase.hpp"
 
-namespace jubeon {
+namespace gh {
 typedef std::function<void(const sf::Event &)> Callback;
 
 class LayerManager : private sf::RenderWindow {
@@ -91,6 +91,6 @@ private:
 	std::atomic<bool> is_continue_eventloop_;
 };
 
-}; //namespace jubeon
+}; //namespace gh
 
-#endif //JUBEON_LAYERMANAGER_HPP_
+#endif //GH_LAYERMANAGER_HPP_

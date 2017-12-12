@@ -6,14 +6,14 @@
 
 #pragma once
 
-#ifndef JUBEON_LAYERBASE_HPP_
-#define JUBEON_LAYERBASE_HPP_
+#ifndef GH_LAYERBASE_HPP_
+#define GH_LAYERBASE_HPP_
 
 #include <SFML/Graphics.hpp>
 #include <atomic>
 #include "system/Logger.hpp"
 
-namespace jubeon {
+namespace gh {
 
 class LayerBase : public sf::RenderTexture {
 public:
@@ -52,25 +52,25 @@ protected:
 	sf::Sprite layer_sprite_;
 
 };	//class LayerBase
-};//namespace jubeon
+};//namespace gh
 
 
 //### inline functions ###
-inline int jubeon::LayerBase::getExitCode(void) const {
+inline int gh::LayerBase::getExitCode(void) const {
 	return this->exit_code_;
 }
 
-inline void jubeon::LayerBase::setExitCode(const int code) {
+inline void gh::LayerBase::setExitCode(const int code) {
 	this->exit_code_ = code;
-	jubeon::Logger("LayerBase").information("This Layer's exit code has been changed to " + std::to_string(this->exit_code_) + ".");
+	gh::Logger("LayerBase").information("This Layer's exit code has been changed to " + std::to_string(this->exit_code_) + ".");
 }
 
-inline const sf::Sprite & jubeon::LayerBase::getSprite(void) const {
+inline const sf::Sprite & gh::LayerBase::getSprite(void) const {
 	return this->layer_sprite_;
 }
 
-inline void jubeon::LayerBase::clearLayer(void) {
+inline void gh::LayerBase::clearLayer(void) {
 	this->clear(sf::Color(0, 0, 0, 0));
 }
 
-#endif	//JUBEON_LAYERBASE_HPP_
+#endif	//GH_LAYERBASE_HPP_

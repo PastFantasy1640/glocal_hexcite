@@ -10,7 +10,7 @@ int main(void) {
 
 	std::cout << std::endl;
 	std::cout << "オンラインで遊びますか？オフラインで遊びますか？" << std::endl;
-	std::cout << "オンライン:1 / オフライン:0 ? 1" << std::endl;
+	std::cout << "オンライン:1 / オフライン:2 / 終了:0 ? 1" << std::endl;
 	std::cout << "（現在オフラインは未実装なため、強制的にオンラインを選択しています）" << std::endl;
 
 	if (is_online) {
