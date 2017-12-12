@@ -6,6 +6,7 @@
 #include "system/Scene.hpp"
 
 #include <memory>
+#include "game/BackgroundLayer.hpp"
 #include "network/Network.hpp"
 
 namespace gh {
@@ -15,13 +16,13 @@ public:
 	GameScene(std::unique_ptr<Network>&& network);
 	~GameScene();
 
-	void prepareLayerTh(void);
+	void prepareLayer(void);
 
 private:
 	virtual int update(void) override;
 
-	std::unique_ptr<Network> network;
-
+	std::unique_ptr<Network> network_;
+	std::shared_ptr<BackgroundLayer> bg_layer_;
 
 };
 
