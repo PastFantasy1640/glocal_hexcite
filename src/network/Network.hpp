@@ -27,7 +27,7 @@ public:
 	void disconnect();
 	bool isConnected() const;
 
-	void send(std::unique_ptr<NetworkContent>&& content);
+	std::unique_ptr<wlib::Json> send(std::string & content);
 
 private:
 	
@@ -43,5 +43,9 @@ private:
 };
 
 };
+
+inline bool gh::Network::isConnected() const{
+	return this->is_connected_;
+}
 
 #endif
