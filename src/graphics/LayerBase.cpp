@@ -5,7 +5,7 @@ gh::LayerBase::~LayerBase()
 }
 
 gh::LayerBase::LayerBase(const LayerType layer_type, const sf::Vector2u layer_size)
-	: sf::RenderTexture(), layer_size_(layer_size), layer_type_(layer_type_), is_create_buffer_(false), exit_code_(0)
+	: sf::RenderTexture(), layer_size_(layer_size), layer_type_(layer_type), is_create_buffer_(false), exit_code_(0)
 {
 }
 

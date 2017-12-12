@@ -73,7 +73,7 @@ std::unique_ptr<gh::Network> gh::Network::setupOnline(void) {
 		
 		status = 0;
 		ret = std::make_unique<Network>(ipaddress, port);
-		while (!ret->connect(sf::milliseconds(10000))) {
+		while (!ret->connect(sf::milliseconds(1000))) {
 			std::cout << "接続に失敗したか、タイムアウトしました。" << std::endl;
 			std::cout << "もう一度トライする場合は1、終了する場合は0、設定を変えてリトライする場合は2かそれ以外を入力してください ? ";
 			std::cin >> status;
@@ -86,7 +86,7 @@ std::unique_ptr<gh::Network> gh::Network::setupOnline(void) {
 		std::cout << "接続に成功しました。" << std::endl;
 	}
 	else {
-		ret.release();
+		//ret.release();
 	}
 
 	return ret;

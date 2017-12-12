@@ -2,7 +2,7 @@
 
 #include "game/SprashScreens.hpp"
 #include "network/Network.hpp"
-
+#include "game/MatchingScene.hpp"
 int main(void) {
 	gh::drawSprashScreen();
 
@@ -17,7 +17,7 @@ int main(void) {
 		std::unique_ptr<gh::Network> network = gh::Network::setupOnline();
 		if (network) {
 			//ê¨å˜
-			
+			gh::MatchingScene(std::move(network));
 		}
 	}
 

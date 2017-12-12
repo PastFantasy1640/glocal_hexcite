@@ -18,11 +18,12 @@ public:
 
 	void prepareLayer(void);
 
+	std::shared_ptr<BackgroundLayer> bg_layer_;
+
 private:
 	virtual int update(void) override;
 
 	std::unique_ptr<Network> network_;
-	std::shared_ptr<BackgroundLayer> bg_layer_;
 
 };
 
