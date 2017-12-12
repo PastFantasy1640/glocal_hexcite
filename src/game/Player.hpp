@@ -27,16 +27,28 @@ public:
 	void setScore(const int score);
 	int getScore(void) const;
 
+	void setRoundScore(const int round_score);
+	int getRoundScore(void) const;
+	void resetRoundScore(void);
+
 private:
 	
 	int score_;
+	int current_round_score_;
 
 	//TODO:パーツリスト
 
 	sf::Texture tex_;
 	sf::Sprite sp_;
 	std::shared_ptr<sf::Font> font_;
+	sf::Text name_txt_;
+	sf::Text score_txt_;
+	sf::Text round_score_txt_;
+	std::array<sf::Text, 7> parts_txts_;
+	sf::Text timer_txt_;
 	
+	sf::Time time_;
+
 	const static std::array<std::string, 4> _player_texture_filename;
 	const static std::array<sf::Vector2f, 4> _player_texture_position;
 

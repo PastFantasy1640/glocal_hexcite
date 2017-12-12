@@ -22,11 +22,8 @@ void gh::MatchingScene(std::unique_ptr<Network>&& network) {
 	layer_manager->setActive(false);
 
 	std::unique_ptr<GameScene> game_scene = std::make_unique<GameScene>(std::move(network));
-	game_scene->prepareLayer();
+	game_scene->prepareLayer(layer_manager.get());
 
-	//ƒŒƒCƒ„[‚Ì’Ç‰Á
-	layer_manager->addLayer(game_scene->bg_layer_, 0);
-	layer_manager->addLayer(game_scene->hex_layer_, 0);
 
 	Scene::run(layer_manager, std::move(game_scene));
 

@@ -9,6 +9,7 @@
 #include "game/BackgroundLayer.hpp"
 #include "game/HexagonFrameLayer.hpp"
 #include "network/Network.hpp"
+#include "Player.hpp"
 
 namespace gh {
 
@@ -17,10 +18,11 @@ public:
 	GameScene(std::unique_ptr<Network>&& network);
 	~GameScene();
 
-	void prepareLayer(void);
+	void prepareLayer(LayerManager * layer_manager);
 	
 	std::shared_ptr<BackgroundLayer> bg_layer_;
 	std::shared_ptr<HexagonFrameLayer> hex_layer_;
+	std::shared_ptr<Player> player_;
 
 private:
 	virtual int update(void) override;
