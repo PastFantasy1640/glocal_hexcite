@@ -18,6 +18,7 @@ public:
 	};
 
 	const std::string content_;
+	const Type type_;
 
 	NetworkContent(const std::string & content, const Type type = kNotification);
 	NetworkContent(const std::string & content, std::unique_ptr<NetworkContent>&& responce, const Type type = kAnswer);
