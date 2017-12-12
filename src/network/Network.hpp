@@ -10,7 +10,6 @@
 #include <thread>
 #include <SFML/Network/TcpSocket.hpp>
 #include <SFML/Network/IpAddress.hpp>
-#include "NetworkContent.hpp"
 #include "system/wlib_Json.hpp"
 
 namespace gh {
@@ -28,7 +27,8 @@ public:
 	bool isConnected() const;
 
 	std::unique_ptr<wlib::Json> send(std::string & content);
-
+	
+	static std::unique_ptr<Network> setupOnline(void);
 private:
 	
 	sf::TcpSocket tcp_socket_;
@@ -40,6 +40,7 @@ private:
 	bool is_connected_;
 
 	static std::string _disconnectJson(void);
+
 };
 
 };

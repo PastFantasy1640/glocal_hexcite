@@ -55,6 +55,43 @@ std::unique_ptr<wlib::Json> gh::Network::send(std::string & content){
 	return ret;
 }
 
+std::unique_ptr<gh::Network> gh::Network::setupOnline(void) {
+	std::string ipaddress;
+	unsigned short port = 0;
+	std::unique_ptr<Network> ret;
+	int status = 0;
+
+	do {
+		std::cout << "接続先のIPアドレスを入力してください ? ";
+		std::cin >> ipaddress;
+		std::cout << "接続するポート番号を指定してください(1-65535, デフォルトは60000) ? ";
+		std::cin >> port;
+
+		if (port < 1 || 65535 < port) port = 60000;
+
+		std::cout << std::endl << "IP:" << ipaddress << " port:" << port << "へ接続中..." << std::endl;
+		
+		status = 0;
+		ret = std::make_unique<Network>(ipaddress, port);
+		while (!ret->connect(sf::milliseconds(10000))) {
+			std::cout << "接続に失敗したか、タイムアウトしました。" << std::endl;
+			std::cout << "もう一度トライする場合は1、終了する場合は0、設定を変えてリトライする場合は2かそれ以外を入力してください ? ";
+			std::cin >> status;
+			if (status != 1) break;
+			std::cout << std::endl << "IP:" << ipaddress << " port:" << port << "へ接続中..." << std::endl;
+		}
+	} while (status != 0);
+
+	if (ret->isConnected()){
+		std::cout << "接続に成功しました。" << std::endl;
+	}
+	else {
+		ret.release();
+	}
+
+	return ret;
+}
+
 std::string gh::Network::_disconnectJson(void) {
 	return std::string("{\"command\":\"disconnect\"}\r\n");
 }
