@@ -7,6 +7,7 @@
 
 #include <memory>
 #include "game/BackgroundLayer.hpp"
+#include "game/HexagonFrameLayer.hpp"
 #include "network/Network.hpp"
 
 namespace gh {
@@ -17,8 +18,9 @@ public:
 	~GameScene();
 
 	void prepareLayer(void);
-
+	
 	std::shared_ptr<BackgroundLayer> bg_layer_;
+	std::shared_ptr<HexagonFrameLayer> hex_layer_;
 
 private:
 	virtual int update(void) override;
