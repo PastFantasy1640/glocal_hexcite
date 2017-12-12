@@ -13,7 +13,7 @@
 #include <thread>
 #include <atomic>
 #include <mutex>
-#include "Graphics/LayerManager.hpp"
+#include "graphics/LayerManager.hpp"
 
 namespace jubeon {
 class Scene {

@@ -11,7 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <atomic>
-#include "Systems/Logger.hpp"
+#include "system/Logger.hpp"
 
 namespace jubeon {
 

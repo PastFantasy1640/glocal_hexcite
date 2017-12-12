@@ -16,7 +16,7 @@
 #include <mutex>
 #include <atomic>
 #include <SFML/Graphics.hpp>
-#include "Graphics/LayerBase.hpp"
+#include "LayerBase.hpp"
 
 namespace jubeon {
 typedef std::function<void(const sf::Event &)> Callback;
