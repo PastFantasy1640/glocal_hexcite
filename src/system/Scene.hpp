@@ -15,7 +15,7 @@
 #include <mutex>
 #include "graphics/LayerManager.hpp"
 
-namespace jubeon {
+namespace gh {
 class Scene {
 public:
 	//# constructor and destractor

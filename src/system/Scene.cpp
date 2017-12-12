@@ -1,14 +1,14 @@
 #include "Scene.hpp"
 #include "Logger.hpp"
 
-std::atomic<bool> jubeon::Scene::is_running_process_ = false;
-std::atomic<bool> jubeon::Scene::is_continue_process_ = true;
-std::mutex jubeon::Scene::mutex_;
-std::unique_ptr<jubeon::Scene> jubeon::Scene::next_scene_;
-std::unique_ptr<jubeon::Scene> jubeon::Scene::current_scene_;
-std::shared_ptr<jubeon::LayerManager> jubeon::Scene::main_window_;
+std::atomic<bool> gh::Scene::is_running_process_ = false;
+std::atomic<bool> gh::Scene::is_continue_process_ = true;
+std::mutex gh::Scene::mutex_;
+std::unique_ptr<gh::Scene> gh::Scene::next_scene_;
+std::unique_ptr<gh::Scene> gh::Scene::current_scene_;
+std::shared_ptr<gh::LayerManager> gh::Scene::main_window_;
 
-void jubeon::Scene::run(const std::shared_ptr<jubeon::LayerManager> & main_window, std::unique_ptr<Scene> first_scene) {
+void gh::Scene::run(const std::shared_ptr<gh::LayerManager> & main_window, std::unique_ptr<Scene> first_scene) {
 
 	if (main_window == nullptr) {
 		Logger("Scene").error("Main window was nullptr.");
@@ -30,7 +30,7 @@ void jubeon::Scene::run(const std::shared_ptr<jubeon::LayerManager> & main_windo
 	thread.detach();
 }
 
-void jubeon::Scene::exitGame() {
+void gh::Scene::exitGame() {
 	Scene::is_continue_process_ = false;
 
 	//waiting for exit processing loop
@@ -38,12 +38,12 @@ void jubeon::Scene::exitGame() {
 	Scene::main_window_->closeWindow();
 }
 
-void jubeon::Scene::setNextScene(std::unique_ptr<Scene> next_scene){
+void gh::Scene::setNextScene(std::unique_ptr<Scene> next_scene){
 	std::lock_guard<std::mutex> lock(this->mutex_);
 	this->next_scene_ = (std::move(next_scene));
 }
 
-void jubeon::Scene::_MainLoop(std::unique_ptr<Scene> first_scene)
+void gh::Scene::_MainLoop(std::unique_ptr<Scene> first_scene)
 {
 	if (!Scene::is_running_process_) {
 		Scene::is_running_process_ = true;

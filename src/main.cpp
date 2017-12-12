@@ -17,7 +17,7 @@ int main(void) {
 		std::unique_ptr<gh::Network> network = gh::Network::setupOnline();
 		if (network) {
 			//¬Œ÷
-
+			
 		}
 	}
 
