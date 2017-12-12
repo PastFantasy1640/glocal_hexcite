@@ -7,7 +7,11 @@
 #include <memory>
 #include <list>
 #include <mutex>
+#include <thread>
+#include <SFML/Network/TcpSocket.hpp>
+#include <SFML/Network/IpAddress.hpp>
 #include "NetworkContent.hpp"
+#include "system/wlib_Json.hpp"
 
 namespace gh {
 
@@ -16,22 +20,26 @@ public:
 	const std::string hostname_;
 	const unsigned int port_;
 
-	Network(const std::string & hostname, const unsigned int port);
+	Network(const std::string & hostname, const unsigned short port);
 	~Network();
 
-	bool connect();
+	bool connect(const sf::Time & timeout = sf::Time::Zero);
 	void disconnect();
 	bool isConnected() const;
 
 	void send(std::unique_ptr<NetworkContent>&& content);
-	std::unique_ptr<NetworkContent> pop(void);
 
 private:
+	
+	sf::TcpSocket tcp_socket_;
+
+	std::unique_ptr<std::thread> thread_;
+
 	std::mutex mutex_;
 
-	std::list<std::unique_ptr<NetworkContent>> queue_;
 	bool is_connected_;
-	bool is_keeping_connected_;
+
+	static std::string _disconnectJson(void);
 };
 
 };
