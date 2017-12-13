@@ -4,10 +4,36 @@
 #include "graphics/LayerManager.hpp"
 #include "system/Scene.hpp"
 #include "GameScene.hpp"
+#include <iostream>
 
 void gh::MatchingScene(std::unique_ptr<Network>&& network) {
 
 	//ñºëOÇ∆Ç©ópà”Ç∑ÇÈÇØÇ«ç°ÇÕÇ¢Ç¢Ç‚
+	std::unique_ptr<Network> net = std::move(network);
+
+	std::string name;
+	do {
+		do {
+			std::cout << "namae wo nyuuryoku site kudasai (\"E\" de exit) ? ";
+			std::cin >> name;
+			if (name == "E") return;
+			if (name.size() >= 2 && name.size() <= 12) break;
+			std::cout << "2 ~ 12mozi inaide siteisite kudasai" << std::endl;
+		} while (1);
+
+		std::cout << name << "de touroku simasu" << std::endl;
+		
+		std::unique_ptr<wlib::Json> retjson = net->send(std::string("{\"name\" : \"") + name + std::string("\"}"));
+		if (retjson) {
+			if ((*retjson)["result"].str("-NG") == "+OK") {
+				name = (*retjson)["name"].str("default");
+				break;
+			}
+		}
+		std::cout << "server kara error ga kaesare masita." << std::endl;
+	} while (1);
+
+
 
 	std::shared_ptr<gh::LayerManager> layer_manager = std::make_shared<gh::LayerManager>(
 		sf::Vector2u(1920, 1080),
