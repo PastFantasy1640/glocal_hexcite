@@ -28,11 +28,12 @@ void gh::Network::disconnect() {
 	}
 }
 
-std::unique_ptr<wlib::Json> gh::Network::send(std::string & content){
+std::unique_ptr<wlib::Json> gh::Network::send(const std::string & content){
 	std::unique_ptr<wlib::Json> ret;
 
 	if (this->is_connected_) {
-		sf::Socket::Status status = this->tcp_socket_.send(content.c_str(), content.size());
+		std::string edit = content + "\r\n";
+		sf::Socket::Status status = this->tcp_socket_.send(edit.c_str(), edit.size());
 		if (status == sf::Socket::Done) {
 			char data[256];
 			std::size_t received;
@@ -86,7 +87,7 @@ std::unique_ptr<gh::Network> gh::Network::setupOnline(void) {
 		std::cout << "Ú‘±‚É¬Œ÷‚µ‚Ü‚µ‚½B" << std::endl;
 	}
 	else {
-		//ret.release();
+		ret.release();
 	}
 
 	return ret;
