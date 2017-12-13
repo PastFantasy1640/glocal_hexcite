@@ -48,6 +48,7 @@ void gh::MatchingScene(std::unique_ptr<Network>&& network) {
 	layer_manager->setActive(false);
 
 	std::unique_ptr<GameScene> game_scene = std::make_unique<GameScene>(std::move(network));
+	game_scene->player_ = std::make_shared<Player>(name);
 	game_scene->prepareLayer(layer_manager.get());
 
 

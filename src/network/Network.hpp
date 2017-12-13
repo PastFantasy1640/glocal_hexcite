@@ -26,7 +26,7 @@ public:
 	void disconnect();
 	bool isConnected() const;
 
-	std::unique_ptr<wlib::Json> send(std::string & content);
+	std::unique_ptr<wlib::Json> send(const std::string & content);
 	
 	static std::unique_ptr<Network> setupOnline(void);
 private:
