@@ -5,14 +5,14 @@
  */
 
 #pragma once
-#ifndef JUBEON_LOGGER_HPP_
-#define JUBEON_LOGGER_HPP_
+#ifndef GH_LOGGER_HPP_
+#define GH_LOGGER_HPP_
 
 #include <string>
 #include <mutex>
 #include <memory>
 
-namespace jubeon{
+namespace gh{
 
 /** class Logger
  * Logging class
@@ -61,34 +61,34 @@ private:
 
 //### inline functions ###
 
-inline jubeon::Logger::Logger(const std::string & tag, bool is_output_stdio, bool is_output_file)
+inline gh::Logger::Logger(const std::string & tag, bool is_output_stdio, bool is_output_file)
 	: tag_(tag), is_output_stdio_(is_output_stdio), is_output_file_(is_output_file){
 }
 
-inline jubeon::Logger::~Logger(){
+inline gh::Logger::~Logger(){
 	//Nothing to do.
 }
 
-inline void jubeon::Logger::information(const std::string & text) {
+inline void gh::Logger::information(const std::string & text) {
 	if(this->log_level_ == kAll) this->_write("INFO", text);
 }
 
-inline void jubeon::Logger::warning(const std::string & text) {
+inline void gh::Logger::warning(const std::string & text) {
 	if(this->log_level_ <= kWarningAndError) this->_write("WARN", text);
 }
 
-inline void jubeon::Logger::error(const std::string & text) {
+inline void gh::Logger::error(const std::string & text) {
 	if(this->log_level_ <= kErrorOnly) this->_write("ERRO", text);
 }
 
-inline void jubeon::Logger::changeLogLevel(LogLevel log_level) {
+inline void gh::Logger::changeLogLevel(LogLevel log_level) {
 	//for thread safe, lock with mutex
 	std::lock_guard<std::mutex> lock(Logger::mutex_);
 
 	this->log_level_ = log_level;
 }
 
-inline void jubeon::Logger::setFileName(const std::string & new_filename)
+inline void gh::Logger::setFileName(const std::string & new_filename)
 {
 	//for thread safe, lock with mutex
 	std::lock_guard<std::mutex> lock(Logger::mutex_);
@@ -96,9 +96,9 @@ inline void jubeon::Logger::setFileName(const std::string & new_filename)
 	this->filename_ = new_filename;
 }
 
-inline std::string jubeon::Logger::getFileName(void) const
+inline std::string gh::Logger::getFileName(void) const
 {
 	return filename_;
 }
 
-#endif // JUBEON_LOGGER_HPP_
+#endif // GH_LOGGER_HPP_

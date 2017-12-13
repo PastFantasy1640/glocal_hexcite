@@ -9,18 +9,18 @@
 #include <fstream>
 
 //STATICAL VARIABLE DECLARATION
-std::mutex jubeon::Logger::mutex_;
-std::string jubeon::Logger::filename_("logger.log");
+std::mutex gh::Logger::mutex_;
+std::string gh::Logger::filename_("logger.log");
 
 #ifdef _DEBUG
-	constexpr jubeon::Logger::LogLevel kDefaultLogLevel = jubeon::Logger::kAll;
+	constexpr gh::Logger::LogLevel kDefaultLogLevel = gh::Logger::kAll;
 #else
-	constexpr jubeon::Logger::LogLevel kDefaultLogLevel = jubeon::Logger::kErrorOnly;
+	constexpr gh::Logger::LogLevel kDefaultLogLevel = gh::Logger::kErrorOnly;
 #endif
-	jubeon::Logger::LogLevel jubeon::Logger::log_level_ = kDefaultLogLevel;
+	gh::Logger::LogLevel gh::Logger::log_level_ = kDefaultLogLevel;
 
 
-void jubeon::Logger::_write(const std::string & status, const std::string & text){
+void gh::Logger::_write(const std::string & status, const std::string & text){
 	//[status] Thread:(thread_no) 2017-10-15 03:47:24 <tag> | [text]
 	//______________________________________________________| [multi text]
 
