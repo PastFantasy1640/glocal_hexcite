@@ -35,9 +35,9 @@ public:
 
 	sf::Sprite getSprite(const std::array<std::array<sf::Texture, Segment::Type::kAllPartsNum>, 4> & textures) const;
 	
-	static unsigned char getIntersectionPointRG(const unsigned char r, const unsigned char g);
-	static unsigned char getIntersectionPointGB(const unsigned char g, const unsigned char b);
-	static unsigned char getIntersectionPointBR(const unsigned char b, const unsigned char r);
+	static char getIntersectionPointRG(const unsigned char r, const unsigned char g);
+	static char getIntersectionPointGB(const unsigned char g, const unsigned char b);
+	static char getIntersectionPointBR(const unsigned char b, const unsigned char r);
 
 private:
 	Segment() = delete;
@@ -53,15 +53,15 @@ inline gh::Segment::Segment(const Type t, const SegmentPos & r, const SegmentPos
 
 inline gh::Segment::~Segment() {}
 
-inline unsigned char gh::Segment::getIntersectionPointRG(const unsigned char r, const unsigned char g){
+inline char gh::Segment::getIntersectionPointRG(const unsigned char r, const unsigned char g){
 	return (g - r + 6);
 }
 
-inline unsigned char gh::Segment::getIntersectionPointGB(const unsigned char g, const unsigned char b) {
+inline char gh::Segment::getIntersectionPointGB(const unsigned char g, const unsigned char b) {
 	return (g - b + 6);
 }
 
-inline unsigned char gh::Segment::getIntersectionPointBR(const unsigned char b, const unsigned char r) {
+inline char gh::Segment::getIntersectionPointBR(const unsigned char b, const unsigned char r) {
 	return (r + b - 6);
 }
 

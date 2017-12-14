@@ -12,6 +12,7 @@ void gh::MatchingScene(std::unique_ptr<Network>&& network) {
 	std::unique_ptr<Network> net = std::move(network);
 
 	std::string name;
+	/*
 	do {
 		do {
 			std::cout << "namae wo nyuuryoku site kudasai (\"E\" de exit) ? ";
@@ -32,8 +33,10 @@ void gh::MatchingScene(std::unique_ptr<Network>&& network) {
 		}
 		std::cout << "server kara error ga kaesare masita." << std::endl;
 	} while (1);
+	*/
 
-
+	//TEMPORARY
+	name = "temp name";
 
 	std::shared_ptr<gh::LayerManager> layer_manager = std::make_shared<gh::LayerManager>(
 		sf::Vector2u(1920, 1080),

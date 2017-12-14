@@ -42,8 +42,14 @@ sf::Sprite gh::Segment::getSprite(const std::array<std::array<sf::Texture, Segme
 
 	//‰ñ“]Šp“x
 	int index = (idx % 6 + idx / 6); //0 - 5
+
+	if (t == kDiamondBig || t == kDiamondSmall) {
+		if (index == 2) index = 4;
+		else if (index == 4) index = 2;
+	}
+
 	ret.setRotation(index * 60.0f);
-	unsigned char c_r, c_b;
+	char c_r, c_b;
 	switch (index) {
 	case 0:
 		c_r = r.s;
@@ -74,19 +80,18 @@ sf::Sprite gh::Segment::getSprite(const std::array<std::array<sf::Texture, Segme
 	ret.setTexture(textures.at(color_no).at(t));
 	switch (t) {
 	case kHexagon:
-		ret.setOrigin(150.0f / 1.7320508f, -75);
+	case kTrapezoidSmall:
+		ret.setOrigin(ret.getTextureRect().width / 2.0f, -75);
 		break;
-	case kTriangleSmall:
-	case kTriangleBig:
 	case kDiamondSmall:
 	case kDiamondBig:
-		ret.setOrigin(75.0f / 1.7320508f, 0);
-		break;
-	case kTrapezoidSmall:
-		ret.setOrigin(150.0f / 1.7320508f, -75);
+		ret.setRotation(ret.getRotation());
+	case kTriangleSmall:
+	case kTriangleBig:
+		ret.setOrigin(ret.getTextureRect().width / 2.0f, 0);
 		break;
 	case kTrapezoidBig:
-		ret.setOrigin(300.0f / 1.7320508f, -150);
+		ret.setOrigin(ret.getTextureRect().width / 2.0f, -150);
 		break;
 	}
 

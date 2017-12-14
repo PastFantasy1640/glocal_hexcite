@@ -12,13 +12,13 @@ void gh::FieldLayer::initialize() {
 	
 	for (int i = 0; i < 2; i++) {
 		std::string filename = "media/parts_player" + std::to_string(i+1) + ".png";
-		this->parts_tex_.at(i).at(Segment::kHexagon).loadFromFile(filename, sf::IntRect(0, 0, 173, 150));
-		this->parts_tex_.at(i).at(Segment::kTriangleBig).loadFromFile(filename, sf::IntRect(173, 80, 173, 150));
-		this->parts_tex_.at(i).at(Segment::kDiamondBig).loadFromFile(filename, sf::IntRect(346, 0, 260, 150));
-		this->parts_tex_.at(i).at(Segment::kTrapezoidBig).loadFromFile(filename, sf::IntRect(0, 180, 345, 150));
-		this->parts_tex_.at(i).at(Segment::kTriangleSmall).loadFromFile(filename, sf::IntRect(350, 155, 86, 74));
-		this->parts_tex_.at(i).at(Segment::kDiamondSmall).loadFromFile(filename, sf::IntRect(440, 155, 130, 74));
-		this->parts_tex_.at(i).at(Segment::kTrapezoidSmall).loadFromFile(filename, sf::IntRect(350, 246, 172, 74));
+		this->parts_tex_.at(i).at(Segment::kHexagon).loadFromFile(filename, sf::IntRect(4, 0, 172, 150));
+		this->parts_tex_.at(i).at(Segment::kTriangleBig).loadFromFile(filename, sf::IntRect(359, 155, 172, 150));
+		this->parts_tex_.at(i).at(Segment::kDiamondBig).loadFromFile(filename, sf::IntRect(548, 0, 172, 300));
+		this->parts_tex_.at(i).at(Segment::kTrapezoidBig).loadFromFile(filename, sf::IntRect(5, 155, 344, 150));
+		this->parts_tex_.at(i).at(Segment::kTriangleSmall).loadFromFile(filename, sf::IntRect(227, 77, 86, 75));
+		this->parts_tex_.at(i).at(Segment::kDiamondSmall).loadFromFile(filename, sf::IntRect(371, 0, 86, 150));
+		this->parts_tex_.at(i).at(Segment::kTrapezoidSmall).loadFromFile(filename, sf::IntRect(184, 0, 172, 75));
 		for (auto p = this->parts_tex_.at(i).begin(); p != this->parts_tex_.at(i).end(); ++p) p->setSmooth(true);
 	}
 }

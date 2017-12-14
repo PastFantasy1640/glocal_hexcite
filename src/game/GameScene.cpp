@@ -28,14 +28,16 @@ void gh::GameScene::prepareLayer(LayerManager * layer_manager) {
 	layer_manager->addLayer(this->field_layer_, 0);
 
 	//ƒeƒXƒg
-	//this->segments_.push_back(Segment(Segment::kTriangleSmall, SegmentPos(4, 5), SegmentPos(4, 5), SegmentPos(6, 7), 0));
-	//this->segments_.push_back(Segment(Segment::kTrapezoidSmall, SegmentPos(4, 6), SegmentPos(4, 5), SegmentPos(4, 6), 1));
+	this->segments_.push_back(Segment(Segment::kTriangleSmall, SegmentPos(4, 5), SegmentPos(4, 5), SegmentPos(6, 7), 0));
+	this->segments_.push_back(Segment(Segment::kTrapezoidSmall, SegmentPos(4, 6), SegmentPos(4, 5), SegmentPos(4, 6), 1));
 	this->segments_.push_back(Segment(Segment::kTrapezoidBig, SegmentPos(2, 6), SegmentPos(6, 10), SegmentPos(10, 12), 0));
-	this->segments_.push_back(Segment(Segment::kTrapezoidBig, SegmentPos(2, 6), SegmentPos(6, 10), SegmentPos(10, 12), 0));
-	//this->segments_.push_back(Segment(Segment::kDiamondSmall, SegmentPos(4, 6), SegmentPos(5, 6), SegmentPos(6, 7), 1));
-	//this->segments_.push_back(Segment(Segment::kDiamondBig, SegmentPos(5, 9), SegmentPos(5, 8), SegmentPos(4, 6), 0));
-	//this->segments_.push_back(Segment(Segment::kTrapezoidSmall, SegmentPos(4, 6), SegmentPos(4, 5), SegmentPos(4, 6), 1));
-	//this->segments_.push_back(Segment(Segment::kTrapezoidSmall, SegmentPos(4, 6), SegmentPos(4, 5), SegmentPos(4, 6), 1));
+	this->segments_.push_back(Segment(Segment::kTrapezoidBig, SegmentPos(2, 6), SegmentPos(6, 10), SegmentPos(8, 10), 1));
+	this->segments_.push_back(Segment(Segment::kDiamondSmall, SegmentPos(5, 6), SegmentPos(6, 7), SegmentPos(6, 8), 1));
+	this->segments_.push_back(Segment(Segment::kDiamondSmall, SegmentPos(4, 6), SegmentPos(5, 6), SegmentPos(6, 7), 0));
+	this->segments_.push_back(Segment(Segment::kDiamondBig, SegmentPos(9, 11), SegmentPos(7, 9), SegmentPos(2, 6), 0));
+	this->segments_.push_back(Segment(Segment::kTrapezoidSmall, SegmentPos(4, 6), SegmentPos(4, 5), SegmentPos(4, 6), 1));
+	this->segments_.push_back(Segment(Segment::kTriangleBig, SegmentPos(2, 4), SegmentPos(0, 2), SegmentPos(4, 6), 1));
+	this->segments_.push_back(Segment(Segment::kHexagon, SegmentPos(7, 9), SegmentPos(2, 4), SegmentPos(0, 2), 1));
 
 }
 
