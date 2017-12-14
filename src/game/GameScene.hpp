@@ -10,6 +10,7 @@
 #include "game/HexagonFrameLayer.hpp"
 #include "network/Network.hpp"
 #include "Player.hpp"
+#include "FieldLayer.hpp"
 
 namespace gh {
 
@@ -23,11 +24,14 @@ public:
 	std::shared_ptr<BackgroundLayer> bg_layer_;
 	std::shared_ptr<HexagonFrameLayer> hex_layer_;
 	std::shared_ptr<Player> player_;
+	std::shared_ptr<FieldLayer> field_layer_;
+
 
 private:
 	virtual int update(void) override;
 
 	std::unique_ptr<Network> network_;
+	std::vector<Segment> segments_;
 
 };
 
